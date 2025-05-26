@@ -2047,6 +2047,7 @@ IMPORTANT:
         authCode={authCode}
         setAuthCode={setAuthCode}
         isAuthLoading={isAuthLoading}
+        showWikiType={true}
       />
     </div>
   );
