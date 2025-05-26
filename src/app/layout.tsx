@@ -4,12 +4,14 @@ import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { LanguageProvider } from "@/contexts/LanguageContext";
 
-// Japanese-friendly fonts
+// Japanese-friendly fonts with fallback configuration
 const notoSansJP = Noto_Sans_JP({
   variable: "--font-geist-sans",
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   display: "swap",
+  fallback: ['system-ui', 'arial'],
+  preload: false, // Disable preloading to avoid build-time network requests
 });
 
 const notoSerifJP = Noto_Serif_JP({
@@ -17,11 +19,15 @@ const notoSerifJP = Noto_Serif_JP({
   subsets: ["latin"],
   weight: ["400", "500", "700"],
   display: "swap",
+  fallback: ['serif'],
+  preload: false, // Disable preloading to avoid build-time network requests
 });
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
   subsets: ["latin"],
+  fallback: ['monospace'],
+  preload: false, // Disable preloading to avoid build-time network requests
 });
 
 export const metadata: Metadata = {
