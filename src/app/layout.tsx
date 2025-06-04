@@ -1,28 +1,7 @@
 import type { Metadata } from "next";
-import { Noto_Sans_JP, Noto_Serif_JP, Geist_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "next-themes";
 import { LanguageProvider } from "@/contexts/LanguageContext";
-
-// Japanese-friendly fonts
-const notoSansJP = Noto_Sans_JP({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  display: "swap",
-});
-
-const notoSerifJP = Noto_Serif_JP({
-  variable: "--font-serif-jp",
-  subsets: ["latin"],
-  weight: ["400", "500", "700"],
-  display: "swap",
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 export const metadata: Metadata = {
   title: "Deepwiki Open Source | Sheing Ng",
@@ -37,7 +16,12 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body
-        className={`${notoSansJP.variable} ${notoSerifJP.variable} ${geistMono.variable} antialiased`}
+        className="antialiased"
+        style={{
+          "--font-geist-sans": "-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+          "--font-serif-jp": "Georgia, 'Times New Roman', serif",
+          "--font-geist-mono": "SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+        } as React.CSSProperties}
       >
         <ThemeProvider attribute="data-theme" defaultTheme="system" enableSystem>
           <LanguageProvider>
