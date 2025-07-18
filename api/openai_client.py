@@ -412,7 +412,8 @@ class OpenAIClient(ModelClient):
         """
         kwargs is the combined input and model_kwargs.  Support streaming call.
         """
-        log.info(f"api_kwargs: {api_kwargs}")
+        # reduce I/O impact
+        log.info(f"OpenAI API call - model: {api_kwargs.get('model', 'unknown')}, type: {model_type}")
         self._api_kwargs = api_kwargs
         if model_type == ModelType.EMBEDDER:
             return self.sync_client.embeddings.create(**api_kwargs)
