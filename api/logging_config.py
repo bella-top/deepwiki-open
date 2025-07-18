@@ -48,6 +48,13 @@ def setup_logging(format: str = None):
     # Ignore log file's change detection
     for handler in logging.getLogger().handlers:
         handler.addFilter(IgnoreLogChangeDetectedFilter())
+    
+    # Set higher log level for third-party libraries to prevent excessive logging
+    # This helps prevent BlockingIOError from large log outputs
+    logging.getLogger('adalflow').setLevel(logging.WARNING)
+    logging.getLogger('openai').setLevel(logging.WARNING)
+    logging.getLogger('httpx').setLevel(logging.WARNING)
+    logging.getLogger('urllib3').setLevel(logging.WARNING)
 
     # Initial debug message to confirm configuration
     logger = logging.getLogger(__name__)
